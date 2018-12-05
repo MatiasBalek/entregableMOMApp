@@ -19,11 +19,12 @@ import android.view.MenuItem;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.stbsargentina.entregablemuseomoma.R;
+import com.stbsargentina.entregablemuseomoma.model.POJO.Paint;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FragmentDetalle.ListenerFragmentDetalle {
 
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
@@ -87,4 +88,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void pinturaSeleccionada(Paint paint) {
+        Bundle nuevoBundle = new Bundle();
+        nuevoBundle.putSerializable(FragmentPaint.CLAVE_PAINT, paint);
+        FragmentPaint fragmentPaint = new FragmentPaint();
+        fragmentPaint.setArguments(nuevoBundle);
+        putFragment(fragmentPaint);
+    }
 }

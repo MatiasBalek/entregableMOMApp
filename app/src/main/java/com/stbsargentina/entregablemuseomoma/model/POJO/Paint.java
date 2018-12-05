@@ -1,6 +1,8 @@
 package com.stbsargentina.entregablemuseomoma.model.POJO;
 
-public class Paint {
+import java.io.Serializable;
+
+public class Paint implements Serializable{
     private Integer imagen;
     private String name;
     private Integer artistId;
