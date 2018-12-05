@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.stbsargentina.entregablemuseomoma.R;
 import com.stbsargentina.entregablemuseomoma.controller.PaintController;
 import com.stbsargentina.entregablemuseomoma.model.POJO.Paint;
@@ -21,6 +23,7 @@ public class FragmentDetalle extends Fragment implements AdapterPaints.ListenerA
 private View viewDelFragment;
 private ListenerFragmentDetalle listenerFragmentDetalle;
 private AdapterPaints adapterPaints;
+private DatabaseReference mDatabase;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,6 +36,7 @@ private AdapterPaints adapterPaints;
         recyclerViewPaints.setAdapter(adapterPaints);
         recyclerViewPaints.setLayoutManager(linearLayoutManager);
         getPaints();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         return viewDelFragment;
     }
 
