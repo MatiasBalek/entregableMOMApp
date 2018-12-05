@@ -23,7 +23,7 @@ public class FragmentDetalle extends Fragment implements AdapterPaints.ListenerA
 private View viewDelFragment;
 private ListenerFragmentDetalle listenerFragmentDetalle;
 private AdapterPaints adapterPaints;
-private DatabaseReference mDatabase;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,7 +36,7 @@ private DatabaseReference mDatabase;
         recyclerViewPaints.setAdapter(adapterPaints);
         recyclerViewPaints.setLayoutManager(linearLayoutManager);
         getPaints();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+
         return viewDelFragment;
     }
 
