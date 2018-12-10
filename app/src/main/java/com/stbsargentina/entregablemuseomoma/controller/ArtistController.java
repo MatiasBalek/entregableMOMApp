@@ -9,8 +9,13 @@ import java.util.ArrayList;
 
 public class ArtistController {
 
-    public void getArtists(ResultListener<ArtistContainer> listener){
+    public void getArtists(final ResultListener<Artist> listener, String artistId){
         DAOArtist daoArtist = new DAOArtist();
-        daoArtist.getArtists(new ArrayList<Artist>());
+        daoArtist.getArtists(new ResultListener<Artist>() {
+            @Override
+            public void finish(Artist result) {
+                listener.finish(result);
+            }
+        }, artistId);
     }
 }

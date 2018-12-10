@@ -1,16 +1,18 @@
 package com.stbsargentina.entregablemuseomoma.model.POJO;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ArtistContainer {
-    private List<Artist>listaDeArtists;
+    private List<Artist>artists;
 
-    public List<Artist> getListaDeArtists() {
-        return listaDeArtists;
+    public List<Artist> getArtists() {
+        return artists;
     }
 
-    public ArtistContainer(){
-        this.listaDeArtists = new ArrayList<>();
+    public void setArtists(List<Artist> artists) {
+        this.artists = artists;
     }
 }

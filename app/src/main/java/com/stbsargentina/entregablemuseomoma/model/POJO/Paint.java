@@ -3,25 +3,35 @@ package com.stbsargentina.entregablemuseomoma.model.POJO;
 import java.io.Serializable;
 
 public class Paint implements Serializable{
-    private String imagen;
+    private String image;
     private String name;
-    private Integer artistId;
+    private String artistId;
+    private String urlImagen;
 
     public Paint (){
 
     }
-    public Paint(Integer artistID, String imagen, String name){
+
+    public String getUrlImagen() {
+        return urlImagen;
+    }
+
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
+    }
+
+    public Paint(String artistID, String image, String name){
         this.artistId = artistID;
-        this.imagen = imagen;
+        this.image = image;
         this.name = name;
     }
 
-    public Integer getArtistId() {
+    public String getArtistId() {
         return artistId;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getImage() {
+        return image;
     }
 
     public String getName() {

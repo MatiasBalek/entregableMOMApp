@@ -26,6 +26,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Artist:"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:layout_gravity="center_horizontal"
         android:textSize="27dp"
@@ -35,11 +42,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:textSize="15dp"
         android:layout_gravity="center_horizontal"
-        android:textSize="25dp"
-        android:id="@+id/text_view_paint_fragment_influencia"
-        android:text=""
+        android:text="Nationality:"
         />
     <TextView
         android:layout_width="wrap_content"

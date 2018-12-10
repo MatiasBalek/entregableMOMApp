@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.stbsargentina.entregablemuseomoma.R;
 import com.stbsargentina.entregablemuseomoma.model.POJO.Paint;
 
@@ -22,6 +23,11 @@ public class AdapterPaints extends RecyclerView.Adapter<AdapterPaints.PaintViewH
 
     public void setListaDePinturas(List<Paint> listaDePinturas) {
         this.listaDePinturas = listaDePinturas;
+        notifyDataSetChanged();
+    }
+
+    public void addPaint(Paint paint){
+        this.listaDePinturas.add(paint);
         notifyDataSetChanged();
     }
 
@@ -68,7 +74,7 @@ public class AdapterPaints extends RecyclerView.Adapter<AdapterPaints.PaintViewH
         }
         public void bindPaint(Paint paint){
             textViewName.setText(paint.getName());
-            //imageViewImagen.setImageResource(paint.getImagen());
+            Glide.with(itemView).load(paint.getUrlImagen()).into(imageViewImagen);
         }
     }
 

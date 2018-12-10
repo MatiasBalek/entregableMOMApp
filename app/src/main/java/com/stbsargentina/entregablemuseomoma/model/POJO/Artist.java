@@ -1,7 +1,7 @@
 package com.stbsargentina.entregablemuseomoma.model.POJO;
 
 public class Artist {
-    private Integer artistId;
+    private String artistId;
     private String name;
     private String nationality;
 
@@ -9,13 +9,13 @@ public class Artist {
 
     }
 
-    public Artist(Integer artistId, String name, String nationality) {
+    public Artist(String artistId, String name, String nationality) {
         this.artistId = artistId;
         this.name = name;
         this.nationality = nationality;
     }
 
-    public Integer getArtistId() {
+    public String getArtistId() {
         return artistId;
     }
 
