@@ -60,6 +60,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDetalle.L
             case R.id.return_paints:
                 putFragment(new FragmentDetalle());
                 break;
+            case R.id.camera_activity:
+                Intent unIntent = new Intent(this, CameraActivity.class);
+                startActivity(unIntent);
+                break;
             case R.id.logout:
                 LoginManager.getInstance().logOut();
                 FirebaseAuth.getInstance().signOut();

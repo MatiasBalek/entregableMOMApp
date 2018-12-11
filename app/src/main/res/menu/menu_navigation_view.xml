@@ -12,6 +12,9 @@
                 <item
                     android:id="@+id/return_paints"
                     android:title="Paints" />
+                <item
+                    android:id="@+id/camera_activity"
+                    android:title="Camera" />
 
             </menu>
         </item>
