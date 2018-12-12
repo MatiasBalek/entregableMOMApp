@@ -51,29 +51,6 @@ public class CameraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-        callbackManager = CallbackManager.Factory.create();
-
-
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-
-        LoginManager.getInstance().registerCallback(callbackManager,
-                new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        handleFacebookAccessToken(loginResult.getAccessToken());
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        // App code
-                    }
-
-                    @Override
-                    public void onError(FacebookException exception) {
-                        // App code
-                    }
-                });
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -133,13 +110,18 @@ public class CameraActivity extends AppCompatActivity {
 
                 Toast.makeText(CameraActivity.this, "Conseguida", Toast.LENGTH_SHORT).show();
 
-                UserDAO userDao = new UserDAO();
-                userDao.uploadProfileImageToFirebase("EntregableMuseoMOMA", convertirImagenABytes(imageViewCameraFoto), new ResultListener<String>() {
-                    @Override
-                    public void finish(String result) {
-                        Toast.makeText(CameraActivity.this, result, Toast.LENGTH_SHORT).show();
-                    }
-                });
+                if(mAuth.getCurrentUser()!=null) {
+
+                    UserDAO userDao = new UserDAO();
+                    userDao.uploadProfileImageToFirebase(mAuth.getCurrentUser().getUid(), convertirImagenABytes(imageViewCameraFoto), new ResultListener<String>() {
+                        @Override
+                        public void finish(String result) {
+                            Toast.makeText(CameraActivity.this, result, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+               } else {
+                    Toast.makeText(CameraActivity.this, "Tenés que loguearte para usar la camara", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -149,37 +131,10 @@ public class CameraActivity extends AppCompatActivity {
         imageView.buildDrawingCache();
         Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 60, baos);
         byte[] data = baos.toByteArray();
         return data;
     }
 
-    private void handleFacebookAccessToken(AccessToken token) {
-
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(CameraActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-
-                    }
-                });
-    }
-
-    private void updateUI(FirebaseUser currentUser) {
-        if(currentUser!=null){
-            Toast.makeText(this, "usuario logueado", Toast.LENGTH_SHORT).show();
-        }
-    }
 
 }

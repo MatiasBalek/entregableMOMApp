@@ -23,11 +23,9 @@ public class UserDAO {
         //Accedo a la raiz del directorio
         StorageReference referenciaRaiz = storage.getReference();
         //
-        StorageReference referenciaCarpetaImagenes = referenciaRaiz.child("users");
+        final StorageReference referenciaCarpetaImagenes = referenciaRaiz.child("users/" + usuario);
         //
-        final StorageReference referenciaCarpetaUsuario = referenciaCarpetaImagenes.child(usuario+ new Date().getTime() + ".jpg");
-        //
-        //final StorageReference referenciaImagenPerfil = referenciaCarpetaUsuario.child("profile_image.jpg");
+        final StorageReference referenciaCarpetaUsuario = referenciaCarpetaImagenes.child(new Date().getTime() + ".jpg");
 
         UploadTask uploadTask = referenciaCarpetaUsuario.putBytes(bytes);
         uploadTask.addOnFailureListener(new OnFailureListener() {
